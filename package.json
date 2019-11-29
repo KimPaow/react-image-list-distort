@@ -1,6 +1,6 @@
 {
-  "name": "react-image-list-distort",
-  "version": "0.0.0",
+  "name": "@kimpaow/react-image-list-distort",
+  "version": "0.0.1",
   "description": "A react component which takes a list of items with images inside them and shows/distorts the listitems image on hover",
   "main": "index.js",
   "scripts": {
@@ -46,5 +46,8 @@
     "plugins": [
       "./node_modules/@babel/plugin-proposal-class-properties"
     ]
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }

@@ -2,8 +2,6 @@
 
 Creates a threejs canvas which shows and distorts an image when you hover a listitem that wraps an image tag.
 
-<!-- ![preview image](https://github.com/KimPaow/sanity-color-picker/raw/master/src/images/preview.png) -->
-
 ## Installation
 
 `npm install react-image-list-distort`
@@ -15,7 +13,7 @@ import ImageDistort from "react-image-list-distort";
 
 <ImageDistort
   listRoot={".myListRootClass"}
-  itemRoot=".myListItemClass"
+  itemRoot={".myListItemClass"}
   options={{
     strength: 0.2,
     effect: "stretch",
@@ -30,6 +28,7 @@ import ImageDistort from "react-image-list-distort";
 
 ## Props
 
+```js
 autoFocus - focus the control when it mounts
 className - apply a className to the control
 classNamePrefix - apply classNames to inner elements with the given prefix
@@ -55,3 +54,4 @@ value - control the current value
 - {Number} [options.geometry.height=1] - Defines the height of the shape when the shape is 'plane'
 - {Number} [options.geometry.segmentsWidth=32] - Defines the number of segments on the X-axis of the shape when the shape is 'plane'
 - {Number} [options.geometry.segmentsHeight=32] - Defines the number of segments on the Y-axis of the shape when the shape is 'plane'
+```
