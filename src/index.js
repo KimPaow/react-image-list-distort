@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as THREE from "three";
 import { TweenLite } from "gsap";
-import styles from "./styles.css";
 
 Number.prototype.map = function(in_min, in_max, out_min, out_max) {
   return ((this - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 };
+
+const rootStyles = { height: '100%', width: '100%', position: 'fixed', top: '0', left: '0', right: '0', bottom: '0', zIndex: '-1', pointerEvents: 'none' }
 
 /**
  * @prop {string} itemRoot selector for the toplevel list item which holds the image
@@ -369,30 +370,16 @@ class ImageDistort extends Component {
     this.scene.add(this.mesh);
   }
 
-  start = () => {
-    this.renderer.setAnimationLoop(this.animate);
+  start() {
+    this.renderer.setAnimationLoop(this.animate.bind(this));
   };
 
-  stop = () => {
+  stop() {
     cancelAnimationFrame(this.frameId);
   };
 
-  animate = () => {
-    // var positions = this.mesh.geometry.attributes.position.array
-    // var x, y, z, index
-
-    // for (var i = 0; i < positions.length; i + 3) {
-    //   positions[index++] = x
-    //   positions[index++] = y
-    //   positions[index++] = z
-
-    //   x += (Math.random() - 0.5) * 30
-    //   y += (Math.random() - 0.5) * 30
-    //   z += (Math.random() - 0.5) * 30
-    // }
-    // positions.geometry.attributes.position.needsUpdate = true
-
-    this.renderer.render(this.scene, this.camera);
+  animate() {
+    this.renderer && this.renderer.render(this.scene, this.camera);
   };
 
   /**
@@ -491,7 +478,7 @@ class ImageDistort extends Component {
     );
   }
 
-  onWindowResize = () => {
+  onWindowResize() {
     //changes the size of the canavs and updates it
     if (typeof window !== `undefined`) {
       this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -503,7 +490,7 @@ class ImageDistort extends Component {
   render() {
     return (
       <div
-        className={styles.rild_three_root}
+        style={rootStyles}
         ref={mount => {
           this.mount = mount;
         }}

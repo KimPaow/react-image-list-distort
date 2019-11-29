@@ -2,6 +2,8 @@
 
 Creates a threejs canvas which shows and distorts an image when you hover a listitem that wraps an image tag.
 
+![preview image](https://github.com/KimPaow/react-image-list-distort/raw/master/src/images/preview.png)
+
 ## Installation
 
 `npm install react-image-list-distort`
@@ -11,9 +13,20 @@ Creates a threejs canvas which shows and distorts an image when you hover a list
 ```js
 import ImageDistort from "react-image-list-distort";
 
+// You do not have to use ul/li tags, and you can insert other siblings. 
+// What's important is the classnames and their hierarchy.
+<ul className="myListRoot">
+  <li className="myListItem">
+    <img src="..." />
+  </li>
+  <li className="myListItem">
+    <img src="..." />
+  </li>
+</ul>
+
 <ImageDistort
-  listRoot={".myListRootClass"}
-  itemRoot={".myListItemClass"}
+  listRoot={".myListRoot"}
+  itemRoot={".myListItem"}
   options={{
     strength: 0.2,
     effect: "stretch",
