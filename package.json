@@ -1,0 +1,50 @@
+{
+  "name": "react-image-list-distort",
+  "version": "0.0.0",
+  "description": "A react component which takes a list of items with images inside them and shows/distorts the listitems image on hover",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d build --copy-files",
+    "compile": "./node_modules/.bin/babel src --out-dir build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KimPaow/react-image-list-distort.git"
+  },
+  "keywords": [
+    "react",
+    "image",
+    "distort",
+    "list",
+    "kimpaow",
+    "component"
+  ],
+  "author": "Kim Björkman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KimPaow/react-image-list-distort/issues"
+  },
+  "homepage": "https://github.com/KimPaow/react-image-list-distort#readme",
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "prop-types": "^15.7.2",
+    "gsap": "^2.1.3",
+    "three": "^0.108.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-transform-arrow-functions": "^7.7.4",
+    "@babel/preset-react": "^7.7.4"
+  },
+  "babel": {
+    "presets": [
+      "./node_modules/@babel/preset-react"
+    ],
+    "plugins": [
+      "./node_modules/@babel/plugin-proposal-class-properties"
+    ]
+  }
+}
