@@ -13,7 +13,7 @@ Creates a threejs canvas which shows and distorts an image when you hover a list
 ```js
 import ImageDistort from "react-image-list-distort";
 
-// You do not have to use ul/li tags, and you can insert other siblings. 
+// You do not have to use ul/li tags, and you can insert other siblings.
 // What's important is the classnames and their hierarchy.
 <ul className="myListRoot">
   <li className="myListItem">
@@ -25,6 +25,7 @@ import ImageDistort from "react-image-list-distort";
 </ul>
 
 <ImageDistort
+  styles={{ zIndex: 10 }}
   listRoot={".myListRoot"}
   itemRoot={".myListItem"}
   options={{
@@ -41,7 +42,8 @@ import ImageDistort from "react-image-list-distort";
 
 ## Props
 
-```js 
+```js
+{Object} [styles={}] // object with custom styles
 {String} itemRoot   // selector for the toplevel list item which holds the image
 {String} listRoot   // Wrapper for the listItems in the shape of a css class selector.
 {Object} [options]   // Object for option settings

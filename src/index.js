@@ -7,22 +7,33 @@ Number.prototype.map = function(in_min, in_max, out_min, out_max) {
   return ((this - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 };
 
-const rootStyles = { height: '100%', width: '100%', position: 'fixed', top: '0', left: '0', right: '0', bottom: '0', zIndex: '-1', pointerEvents: 'none' }
+let rootStyles = {
+  height: "100%",
+  width: "100%",
+  position: "fixed",
+  top: "0",
+  left: "0",
+  right: "0",
+  bottom: "0",
+  zIndex: "-1",
+  pointerEvents: "none"
+};
 
 /**
+ * @prop {object} [styles={}] object to override styles
  * @prop {string} itemRoot selector for the toplevel list item which holds the image
  * @prop {string} listRoot Wrapper for the listItems in the shape of a css class selector.
- * @prop {Object} [options]
- * @prop {Number} [options.strength=0.25] How powerful the distort is
- * @prop {String} [options.effect=''] A string defining what extra effect to apply. Defaults to "redshift", can also pass "stretch"
- * @prop {Object} [options.geometry] Object containing all options regarding the shape that holds the image
- * @prop {String} [options.geometry.shape='circle'] A string defining the shape of the geometry. Defaults to "circle", can also pass "plane". If circle then the image should be square.
- * @prop {Number} [options.geometry.radius=0.6] A number defining the radius(size) of the shape. Only applicable when shape is 'circle'
- * @prop {Number} [options.geometry.segments=64] Defines the number of segments of the shape when the shape is 'circle
- * @prop {Number} [options.geometry.width=1] Defines the width of the shape when the shape is 'plane'
- * @prop {Number} [options.geometry.height=1] Defines the height of the shape when the shape is 'plane'
- * @prop {Number} [options.geometry.segmentsWidth=32] Defines the number of segments on the X-axis of the shape when the shape is 'plane'
- * @prop {Number} [options.geometry.segmentsHeight=32] Defines the number of segments on the Y-axis of the shape when the shape is 'plane'
+ * @prop {object} [options]
+ * @prop {number} [options.strength=0.25] How powerful the distort is
+ * @prop {string} [options.effect=''] A string defining what extra effect to apply. Defaults to "redshift", can also pass "stretch"
+ * @prop {object} [options.geometry] Object containing all options regarding the shape that holds the image
+ * @prop {string} [options.geometry.shape='circle'] A string defining the shape of the geometry. Defaults to "circle", can also pass "plane". If circle then the image should be square.
+ * @prop {number} [options.geometry.radius=0.6] A number defining the radius(size) of the shape. Only applicable when shape is 'circle'
+ * @prop {number} [options.geometry.segments=64] Defines the number of segments of the shape when the shape is 'circle
+ * @prop {number} [options.geometry.width=1] Defines the width of the shape when the shape is 'plane'
+ * @prop {number} [options.geometry.height=1] Defines the height of the shape when the shape is 'plane'
+ * @prop {number} [options.geometry.segmentsWidth=32] Defines the number of segments on the X-axis of the shape when the shape is 'plane'
+ * @prop {number} [options.geometry.segmentsHeight=32] Defines the number of segments on the Y-axis of the shape when the shape is 'plane'
  */
 class ImageDistort extends Component {
   constructor(props) {
@@ -184,7 +195,7 @@ class ImageDistort extends Component {
     this.start();
 
     if (typeof window !== `undefined`) {
-      window.addEventListener("resize", this.onWindowResize, false);
+      window.addEventListener("resize", this.onWindowResize.bind(this), false);
       window.addEventListener("mousemove", this.mouseMove);
     }
   }
@@ -372,15 +383,15 @@ class ImageDistort extends Component {
 
   start() {
     this.renderer.setAnimationLoop(this.animate.bind(this));
-  };
+  }
 
   stop() {
     cancelAnimationFrame(this.frameId);
-  };
+  }
 
   animate() {
     this.renderer && this.renderer.render(this.scene, this.camera);
-  };
+  }
 
   /**
    * @param  {Object} object
@@ -485,12 +496,13 @@ class ImageDistort extends Component {
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(window.innerWidth, window.innerHeight);
     }
-  };
+  }
 
   render() {
+    console.log(`styles: ${this.props.styles}`);
     return (
       <div
-        style={rootStyles}
+        style={{ ...rootStyles, ...this.props.styles }}
         ref={mount => {
           this.mount = mount;
         }}
@@ -500,6 +512,7 @@ class ImageDistort extends Component {
 }
 
 ImageDistort.defaultProps = {
+  styles: {},
   listRoot: "document.body",
   itemRoot: "a",
   options: {
@@ -518,6 +531,7 @@ ImageDistort.defaultProps = {
 };
 
 ImageDistort.propTypes = {
+  styles: PropTypes.object,
   listRoot: PropTypes.string.isRequired,
   itemRoot: PropTypes.string.isRequired,
   options: PropTypes.shape({

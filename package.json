@@ -1,6 +1,6 @@
 {
   "name": "react-image-list-distort",
-  "version": "1.0.11",
+  "version": "1.0.27",
   "description": "A react component which takes a list of items with images inside them and shows/distorts the listitems image on hover",
   "main": "index.js",
   "scripts": {
@@ -32,9 +32,10 @@
     "three": "^0.108.0"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-react": "6.24.1"
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/cli": "^7.7.4"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
