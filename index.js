@@ -7,7 +7,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import * as THREE from "three";
-import { TweenLite } from "gsap";
+import { TweenLite, Power4 } from "gsap";
 
 Number.prototype.map = function (in_min, in_max, out_min, out_max) {
   return (this - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
@@ -54,7 +54,11 @@ class ImageDistort extends Component {
 
 
   componentDidMount() {
-    if (!this.props.listRoot || !this.props.itemRoot) return;
+    if (!this.props.listRoot || !this.props.itemRoot) {
+      console.error("You need to supply the listRoot and itemRoot props for ImageDistort.");
+      return;
+    }
+
     this.setup();
     this.listItems = this.getListItems({
       selector: this.props.listRoot
@@ -66,6 +70,12 @@ class ImageDistort extends Component {
         isLoaded: true
       });
     });
+
+    if (!this.listItems) {
+      console.warn("Could not find any listItems using the supplied root props. Please make sure they are correct.");
+      return;
+    }
+
     this.createEventsListeners({
       items: this.listItems
     });
