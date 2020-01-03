@@ -496,7 +496,6 @@ class ImageDistort extends Component {
   }
 
   render() {
-    console.log(`styles: ${this.props.styles}`);
     return React.createElement("div", {
       style: _objectSpread({}, rootStyles, {}, this.props.styles),
       ref: mount => {
