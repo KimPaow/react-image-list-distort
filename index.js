@@ -82,6 +82,10 @@ class ImageDistort extends Component {
     this.init();
   }
 
+  componentDidUpdate(prevProps) {
+    this.init();
+  }
+
   get viewport() {
     let width = this.mount.clientWidth;
     let height = this.mount.clientHeight;
