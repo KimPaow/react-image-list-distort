@@ -394,6 +394,12 @@ class ImageDistort extends Component {
     this.material = this.getShader();
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.scene.add(this.mesh);
+
+    if (typeof window !== `undefined`) {
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    }
   }
 
   start() {
